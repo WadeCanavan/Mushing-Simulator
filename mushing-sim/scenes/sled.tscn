@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpj1mj1xp60k8"]
+
+[ext_resource type="PackedScene" uid="uid://srtym7kxhjgl" path="res://meshes/sled.glb" id="1_uqxia"]
+[ext_resource type="PackedScene" uid="uid://c8ewdo8aj6fi5" path="res://scenes/player.tscn" id="2_eo4tb"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_umi8b"]
+radius = 1.7679
+
+[node name="sled" type="RigidBody3D"]
+transform = Transform3D(0.999994, 0, 0, 0, 0.999987, 0, 0, 0, 0.999996, 0, 0, 0)
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0, 1.06)
+can_sleep = false
+continuous_cd = true
+
+[node name="sled" parent="." instance=ExtResource("1_uqxia")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.16963)
+
+[node name="midLine" type="Node3D" parent="sled"]
+transform = Transform3D(-1.00001, 8.74239e-08, 0, 3.82139e-15, 4.3712e-08, -1, -8.74233e-08, -1.00001, -4.37116e-08, 2.8146e-07, 0.24518, -3.16943)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="sled/midLine"]
+transform = Transform3D(1, 0, -1.69407e-21, -2.13163e-14, 1, -1.06581e-14, -1.27055e-21, -3.55271e-15, 1, 9.57743e-09, 0.609553, 1.49012e-08)
+radius = 0.01
+height = 1.22076
+
+[node name="XROrigin3D" parent="." instance=ExtResource("2_eo4tb")]
+physics_interpolation_mode = 2
+transform = Transform3D(0.999999, 0, 0, 0, 1.00001, 0, 0, 0, 0.999999, 0, 1.25076, 1.93233)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, -4.40536e-13, 0, 1, -1.19209e-07, -2.98025e-08, 0, 1, 0.0359444, 1.0647, 1.49071)
+shape = SubResource("CylinderShape3D_umi8b")

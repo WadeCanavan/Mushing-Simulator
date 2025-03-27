@@ -1,0 +1,54 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Mushing Sim"
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
+XRToolsRumbleManager="*res://addons/godot-xr-tools/rumble/rumble_manager.gd"
+
+[debug]
+
+gdscript/stdout/print_gpu_profile=false
+gdscript/stdout/print_fps=false
+
+[dotnet]
+
+project/assembly_name="Mushing Sim"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
+
+[physics]
+
+common/physics_ticks_per_second=120
+common/physics_jitter_fix=1.0
+3d/physics_engine="Jolt Physics (Extension)"
+3d/solver/contact_max_allowed_penetration=0.005
+3d/solver/default_contact_bias=1.0
+common/physics_interpolation=true
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+
+[xr]
+
+openxr/enabled=true
+openxr/reference_space=1
+shaders/enabled=true
