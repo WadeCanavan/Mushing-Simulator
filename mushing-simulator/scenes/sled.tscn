@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bt2cnfn31jj88"]
+
+[ext_resource type="PackedScene" uid="uid://srtym7kxhjgl" path="res://meshes/sled.glb" id="1_gjl25"]
+[ext_resource type="PackedScene" uid="uid://bcq0apojyqst8" path="res://scenes/player.tscn" id="2_rlyft"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dh6xl"]
+size = Vector3(0.583862, 1, 2.41208)
+
+[node name="sled" type="RigidBody3D"]
+center_of_mass_mode = 1
+center_of_mass = Vector3(0, 0.2, 1.5)
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="sled" parent="Node3D" instance=ExtResource("1_gjl25")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.23515)
+
+[node name="Player" parent="Node3D/sled" instance=ExtResource("2_rlyft")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.80802)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00384521, 0.497817, 1.65419)
+shape = SubResource("BoxShape3D_dh6xl")
