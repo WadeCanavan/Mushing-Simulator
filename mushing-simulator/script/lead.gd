@@ -8,8 +8,9 @@ func _ready():
 func _process(_delta: float) -> void:
 	var index = 0
 	for child in children:
-		if child.name != "nav":
-			var target_position = children[index].global_transform.origin
-			child.set_target_position(target_position)
+		if child.name == "lead":
+			var target_position = children[7].global_transform.origin
+			var distance = $nav2.position.distance_to($lead.position)
+			child.set_target_position(target_position, distance)
 			
 			index += 1
