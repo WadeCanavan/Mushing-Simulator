@@ -4,9 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://bcq0apojyqst8" path="res://scenes/player.tscn" id="2_rlyft"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dh6xl"]
-size = Vector3(0.583862, 1, 2.41208)
+size = Vector3(1.05081, 3.04797, 2.99121)
 
 [node name="sled" type="RigidBody3D"]
+mass = 10.0
 center_of_mass_mode = 1
 center_of_mass = Vector3(0, 0.2, 1.5)
 
@@ -19,5 +20,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.23515)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.80802)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00384521, 0.497817, 1.65419)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0214386, 1.5218, 1.74648)
 shape = SubResource("BoxShape3D_dh6xl")

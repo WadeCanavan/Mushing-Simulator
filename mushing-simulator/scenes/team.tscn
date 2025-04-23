@@ -1,48 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://cnegam3ayrrky"]
+[gd_scene load_steps=6 format=3 uid="uid://cnegam3ayrrky"]
 
 [ext_resource type="Script" uid="uid://b5pim7kqyx5kq" path="res://script/lead.gd" id="1_65q0i"]
-[ext_resource type="Script" uid="uid://3yrdxj1s5e70" path="res://script/sled.gd" id="3_mwis8"]
-[ext_resource type="PackedScene" uid="uid://vewvpy4mmxdg" path="res://meshes/dog.glb" id="4_pqg12"]
+[ext_resource type="Material" uid="uid://chcbn1esum0om" path="res://assets/rope.tres" id="3_6pm8d"]
 [ext_resource type="PackedScene" uid="uid://bt2cnfn31jj88" path="res://scenes/sled.tscn" id="5_8oj4s"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_m8wau"]
-size = Vector3(1, 0.800659, 0.57019)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_m8wau"]
 height = 0.0913979
 radius = 0.01
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_65q0i"]
-height = 0.860949
+height = 0.289361
 radius = 0.01
 
 [node name="team" type="Node3D"]
 script = ExtResource("1_65q0i")
 
-[node name="lead" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.37256)
-center_of_mass_mode = 1
-center_of_mass = Vector3(0, 0, 2.5)
-script = ExtResource("3_mwis8")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="lead"]
-transform = Transform3D(-0.999979, 0, -0.00654493, 0, 1, 0, 0.00654493, 0, -0.999979, 0.00210766, 0.392517, 0.237498)
-shape = SubResource("BoxShape3D_m8wau")
-
-[node name="dog2" parent="lead" instance=ExtResource("4_pqg12")]
-transform = Transform3D(-1, 0, 8.74227e-08, 0, 1, 0, -8.74227e-08, 0, -1, -0.249805, -0.00234985, 0.246398)
-
-[node name="dog3" parent="lead" instance=ExtResource("4_pqg12")]
-transform = Transform3D(-1, 0, 8.74227e-08, 0, 1, 0, -8.74227e-08, 0, -1, 0.250125, -0.00234985, 0.238064)
-
 [node name="sled" parent="." instance=ExtResource("5_8oj4s")]
 transform = Transform3D(-0.999781, 0, -0.0209425, 0, 1, 0, 0.0209425, 0, -0.999781, 0, -0.00676262, 0)
+can_sleep = false
 
 [node name="rope" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.998424, 0.0561177, 0, -0.0561177, 0.998424, 0, 0.191963, 0)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="rope"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.00220089, 0.00118398)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope/RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440556, 0)
@@ -52,6 +34,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.044751, 0)
 radius = 0.01
 height = 0.089209
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope/RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.0887328, 0.00318003)
@@ -61,6 +44,7 @@ params/bias = 0.01
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="rope"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.00220089, 0.0906367)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope/RigidBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440556, 0)
@@ -70,6 +54,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.044751, 0)
 radius = 0.01
 height = 0.089209
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope/RigidBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.0887328, 0.00318003)
@@ -79,6 +64,7 @@ params/bias = 0.01
 
 [node name="RigidBody3D3" type="RigidBody3D" parent="rope"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.230022)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope/RigidBody3D3"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -86,6 +72,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope/RigidBody3D3"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope/RigidBody3D3"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -95,6 +82,7 @@ params/bias = 0.01
 
 [node name="RigidBody3D4" type="RigidBody3D" parent="rope"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.32989)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope/RigidBody3D4"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -102,6 +90,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope/RigidBody3D4"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope/RigidBody3D4"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -111,6 +100,7 @@ params/bias = 0.01
 
 [node name="RigidBody3D5" type="RigidBody3D" parent="rope"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.429909)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope/RigidBody3D5"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -118,6 +108,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope/RigidBody3D5"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope/RigidBody3D5"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -127,6 +118,7 @@ params/bias = 0.01
 
 [node name="RigidBody3D6" type="RigidBody3D" parent="rope"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.529542)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope/RigidBody3D6"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -134,6 +126,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope/RigidBody3D6"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope/RigidBody3D6"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -143,6 +136,7 @@ params/bias = 0.01
 
 [node name="RigidBody3D7" type="RigidBody3D" parent="rope"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.629067)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope/RigidBody3D7"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -150,6 +144,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope/RigidBody3D7"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope/RigidBody3D7"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -159,6 +154,7 @@ params/bias = 0.01
 
 [node name="RigidBody3D8" type="RigidBody3D" parent="rope"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.72908)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope/RigidBody3D8"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -166,6 +162,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope/RigidBody3D8"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope/RigidBody3D8"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -175,6 +172,7 @@ params/bias = 0.01
 
 [node name="RigidBody3D9" type="RigidBody3D" parent="rope"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.828252)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope/RigidBody3D9"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -182,6 +180,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope/RigidBody3D9"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope/RigidBody3D9"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -191,6 +190,7 @@ params/bias = 0.01
 
 [node name="RigidBody3D10" type="RigidBody3D" parent="rope"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.928288)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope/RigidBody3D10"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -198,6 +198,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope/RigidBody3D10"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope/RigidBody3D10"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -207,6 +208,7 @@ params/bias = 0.01
 
 [node name="RigidBody3D11" type="RigidBody3D" parent="rope"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 1.0284)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope/RigidBody3D11"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -214,6 +216,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope/RigidBody3D11"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope/RigidBody3D11"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -223,6 +226,7 @@ params/bias = 0.01
 
 [node name="RigidBody3D12" type="RigidBody3D" parent="rope"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 1.12873)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope/RigidBody3D12"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -230,6 +234,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope/RigidBody3D12"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope/RigidBody3D12"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -246,6 +251,7 @@ transform = Transform3D(0.983228, -0.0066903, 0.182256, -0.0205143, 0.988928, 0.
 
 [node name="RigidBody3D" type="RigidBody3D" parent="rope2"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.00220089, 0.00118398)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope2/RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440556, 0)
@@ -255,6 +261,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.044751, 0)
 radius = 0.01
 height = 0.089209
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope2/RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.0887328, 0.00318003)
@@ -263,6 +270,7 @@ node_b = NodePath("../../RigidBody3D2")
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="rope2"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.00220089, 0.0906367)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope2/RigidBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440556, 0)
@@ -272,6 +280,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.044751, 0)
 radius = 0.01
 height = 0.089209
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope2/RigidBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.0887328, 0.00318003)
@@ -280,6 +289,7 @@ node_b = NodePath("../../RigidBody3D3")
 
 [node name="RigidBody3D3" type="RigidBody3D" parent="rope2"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.230022)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope2/RigidBody3D3"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -287,6 +297,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope2/RigidBody3D3"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope2/RigidBody3D3"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -295,6 +306,7 @@ node_b = NodePath("../../RigidBody3D4")
 
 [node name="RigidBody3D4" type="RigidBody3D" parent="rope2"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.32989)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope2/RigidBody3D4"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -302,6 +314,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope2/RigidBody3D4"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope2/RigidBody3D4"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -310,6 +323,7 @@ node_b = NodePath("../../RigidBody3D5")
 
 [node name="RigidBody3D5" type="RigidBody3D" parent="rope2"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.429909)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope2/RigidBody3D5"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -317,6 +331,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope2/RigidBody3D5"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope2/RigidBody3D5"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -325,6 +340,7 @@ node_b = NodePath("../../RigidBody3D6")
 
 [node name="RigidBody3D6" type="RigidBody3D" parent="rope2"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.529542)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope2/RigidBody3D6"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -332,6 +348,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope2/RigidBody3D6"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope2/RigidBody3D6"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -340,6 +357,7 @@ node_b = NodePath("../../RigidBody3D7")
 
 [node name="RigidBody3D7" type="RigidBody3D" parent="rope2"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.629067)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope2/RigidBody3D7"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -347,6 +365,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope2/RigidBody3D7"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope2/RigidBody3D7"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -355,6 +374,7 @@ node_b = NodePath("../../RigidBody3D8")
 
 [node name="RigidBody3D8" type="RigidBody3D" parent="rope2"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.72908)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope2/RigidBody3D8"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -362,6 +382,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope2/RigidBody3D8"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope2/RigidBody3D8"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -370,6 +391,7 @@ node_b = NodePath("../../RigidBody3D9")
 
 [node name="RigidBody3D9" type="RigidBody3D" parent="rope2"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.828252)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope2/RigidBody3D9"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -377,6 +399,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope2/RigidBody3D9"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope2/RigidBody3D9"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -385,6 +408,7 @@ node_b = NodePath("../../RigidBody3D10")
 
 [node name="RigidBody3D10" type="RigidBody3D" parent="rope2"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.928288)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope2/RigidBody3D10"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -392,6 +416,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope2/RigidBody3D10"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope2/RigidBody3D10"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -400,6 +425,7 @@ node_b = NodePath("../../RigidBody3D11")
 
 [node name="RigidBody3D11" type="RigidBody3D" parent="rope2"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 1.0284)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope2/RigidBody3D11"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -407,6 +433,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope2/RigidBody3D11"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope2/RigidBody3D11"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -415,6 +442,7 @@ node_b = NodePath("../../RigidBody3D12")
 
 [node name="RigidBody3D12" type="RigidBody3D" parent="rope2"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 1.12873)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope2/RigidBody3D12"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -422,17 +450,18 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope2/RigidBody3D12"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope2/RigidBody3D12"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
 node_a = NodePath("..")
-node_b = NodePath("../../../lead")
 
 [node name="rope3" type="Node3D" parent="."]
 transform = Transform3D(0.982665, 0.0470352, -0.179326, -0.0205143, 0.988928, 0.146971, 0.184254, -0.140745, 0.972749, 0, 0.259176, 1.17713)
 
 [node name="RigidBody3D" type="RigidBody3D" parent="rope3"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.00220089, 0.00118398)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope3/RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440556, 0)
@@ -442,6 +471,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.044751, 0)
 radius = 0.01
 height = 0.089209
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope3/RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.0887328, 0.00318003)
@@ -450,6 +480,7 @@ node_b = NodePath("../../RigidBody3D2")
 
 [node name="RigidBody3D2" type="RigidBody3D" parent="rope3"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.00220089, 0.0906367)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope3/RigidBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0440556, 0)
@@ -459,6 +490,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.044751, 0)
 radius = 0.01
 height = 0.089209
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope3/RigidBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.0887328, 0.00318003)
@@ -467,6 +499,7 @@ node_b = NodePath("../../RigidBody3D3")
 
 [node name="RigidBody3D3" type="RigidBody3D" parent="rope3"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.230022)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope3/RigidBody3D3"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -474,6 +507,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope3/RigidBody3D3"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope3/RigidBody3D3"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -482,6 +516,7 @@ node_b = NodePath("../../RigidBody3D4")
 
 [node name="RigidBody3D4" type="RigidBody3D" parent="rope3"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.32989)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope3/RigidBody3D4"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -489,6 +524,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope3/RigidBody3D4"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope3/RigidBody3D4"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -497,6 +533,7 @@ node_b = NodePath("../../RigidBody3D5")
 
 [node name="RigidBody3D5" type="RigidBody3D" parent="rope3"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.429909)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope3/RigidBody3D5"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -504,6 +541,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope3/RigidBody3D5"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope3/RigidBody3D5"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -512,6 +550,7 @@ node_b = NodePath("../../RigidBody3D6")
 
 [node name="RigidBody3D6" type="RigidBody3D" parent="rope3"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.529542)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope3/RigidBody3D6"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -519,6 +558,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope3/RigidBody3D6"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope3/RigidBody3D6"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -527,6 +567,7 @@ node_b = NodePath("../../RigidBody3D7")
 
 [node name="RigidBody3D7" type="RigidBody3D" parent="rope3"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.629067)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope3/RigidBody3D7"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -534,6 +575,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope3/RigidBody3D7"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope3/RigidBody3D7"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -542,6 +584,7 @@ node_b = NodePath("../../RigidBody3D8")
 
 [node name="RigidBody3D8" type="RigidBody3D" parent="rope3"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.72908)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope3/RigidBody3D8"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -549,6 +592,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope3/RigidBody3D8"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope3/RigidBody3D8"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -557,6 +601,7 @@ node_b = NodePath("../../RigidBody3D9")
 
 [node name="RigidBody3D9" type="RigidBody3D" parent="rope3"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.828252)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope3/RigidBody3D9"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -564,6 +609,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope3/RigidBody3D9"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope3/RigidBody3D9"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -572,6 +618,7 @@ node_b = NodePath("../../RigidBody3D10")
 
 [node name="RigidBody3D10" type="RigidBody3D" parent="rope3"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 0.928288)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope3/RigidBody3D10"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -579,6 +626,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope3/RigidBody3D10"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope3/RigidBody3D10"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -587,6 +635,7 @@ node_b = NodePath("../../RigidBody3D11")
 
 [node name="RigidBody3D11" type="RigidBody3D" parent="rope3"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 1.0284)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope3/RigidBody3D11"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -594,6 +643,7 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope3/RigidBody3D11"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope3/RigidBody3D11"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
@@ -602,6 +652,7 @@ node_b = NodePath("../../RigidBody3D12")
 
 [node name="RigidBody3D12" type="RigidBody3D" parent="rope3"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, -0.999989, 0, 0.999989, 0.00464255, 0, 0.0019917, 1.12873)
+mass = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rope3/RigidBody3D12"]
 shape = SubResource("CylinderShape3D_m8wau")
@@ -609,19 +660,21 @@ shape = SubResource("CylinderShape3D_m8wau")
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="rope3/RigidBody3D12"]
 radius = 0.01
 height = 0.1
+material = ExtResource("3_6pm8d")
 
 [node name="PinJoint3D" type="PinJoint3D" parent="rope3/RigidBody3D12"]
 transform = Transform3D(1, 0, 0, 0, 0.00464255, 0.999989, 0, -0.999989, 0.00464255, 0, 0.049669, 0.00100902)
 node_a = NodePath("..")
-node_b = NodePath("../../../lead")
 
 [node name="RigidBody3D" type="RigidBody3D" parent="."]
 transform = Transform3D(0.965623, -0.253248, 0.0586368, 0.0934212, 0.127585, -0.987418, 0.24258, 0.958952, 0.146858, 0.217581, 0.0830114, -0.816718)
+mass = 0.3
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="RigidBody3D"]
 transform = Transform3D(1.00001, -1.49012e-08, -3.44589e-06, 1.04308e-07, 1, -1.22935e-06, -4.09782e-08, 0, 1.00005, 0, 0.420952, -5.96046e-08)
 radius = 0.01
 height = 0.861507
+material = ExtResource("3_6pm8d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.70552e-08, 0.420763, -7.45058e-08)
@@ -637,13 +690,64 @@ transform = Transform3D(1, 0, -1.30385e-07, 1.04308e-07, 1, 1.19209e-07, -1.1175
 node_a = NodePath("..")
 node_b = NodePath("../../rope/RigidBody3D")
 
+[node name="RigidBody3D3" type="RigidBody3D" parent="."]
+transform = Transform3D(0.543837, -0.773885, 0.324567, 0.306764, -0.176668, -0.935245, 0.781113, 0.608187, 0.141322, 0.217581, 0.241029, -0.171584)
+mass = 0.3
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="RigidBody3D3"]
+transform = Transform3D(1.00001, -4.76837e-07, -5.32717e-06, 1.19209e-07, 1, -3.50922e-06, 1.11759e-07, 6.25849e-07, 1.00005, 0, 0.131853, -8.9407e-08)
+radius = 0.01
+height = 0.283309
+material = ExtResource("3_6pm8d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3"]
+transform = Transform3D(1, -1.37091e-06, 1.13994e-06, 0, 0.999997, -2.01166e-07, 0, 8.19564e-07, 0.999998, -1.11759e-07, 0.134969, -1.04308e-07)
+shape = SubResource("CylinderShape3D_65q0i")
+
+[node name="PinJoint3D" type="PinJoint3D" parent="RigidBody3D3"]
+transform = Transform3D(1, 1.11759e-08, 0, 2.98023e-08, 0.00464249, 0.999989, -1.86265e-08, -0.999989, 0.0046425, -0.0115102, -0.0141878, -0.000861809)
+node_a = NodePath("..")
+node_b = NodePath("../../sled")
+
+[node name="PinJoint3D3" type="PinJoint3D" parent="RigidBody3D3"]
+transform = Transform3D(1, 0, 1.19209e-07, 5.96046e-08, 1, 2.98023e-08, 2.23517e-08, -2.98023e-08, 1, 0.00446752, 0.269382, -0.00563817)
+node_a = NodePath("..")
+node_b = NodePath("../../rope/RigidBody3D")
+
+[node name="RigidBody3D4" type="RigidBody3D" parent="."]
+transform = Transform3D(0.565183, 0.824433, 0.0296472, 0.306764, -0.176668, -0.935245, -0.76581, 0.53768, -0.352756, -0.228339, 0.241029, -0.149462)
+mass = 0.3
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="RigidBody3D4"]
+transform = Transform3D(1.00001, -4.76837e-07, -5.32717e-06, 1.19209e-07, 1, -3.50922e-06, 1.11759e-07, 6.25849e-07, 1.00005, 0, 0.131853, -8.9407e-08)
+radius = 0.01
+height = 0.283309
+smooth_faces = false
+material = ExtResource("3_6pm8d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D4"]
+transform = Transform3D(1, -1.37091e-06, 1.13994e-06, 0, 0.999997, -2.01166e-07, 0, 8.19564e-07, 0.999998, -1.11759e-07, 0.134969, -1.04308e-07)
+shape = SubResource("CylinderShape3D_65q0i")
+
+[node name="PinJoint3D" type="PinJoint3D" parent="RigidBody3D4"]
+transform = Transform3D(1, 1.11759e-08, 0, 2.98023e-08, 0.00464249, 0.999989, -1.86265e-08, -0.999989, 0.0046425, -0.0115102, -0.0141878, -0.000861809)
+node_a = NodePath("..")
+node_b = NodePath("../../sled")
+
+[node name="PinJoint3D3" type="PinJoint3D" parent="RigidBody3D4"]
+transform = Transform3D(1, 0, 1.19209e-07, 5.96046e-08, 1, 2.98023e-08, 2.23517e-08, -2.98023e-08, 1, 0.00446752, 0.269382, -0.00563817)
+node_a = NodePath("..")
+node_b = NodePath("../../rope/RigidBody3D")
+
 [node name="RigidBody3D2" type="RigidBody3D" parent="."]
 transform = Transform3D(0.943267, 0.306041, 0.128788, 0.0934212, 0.127585, -0.987418, -0.318621, 0.943431, 0.091756, -0.263488, 0.0830114, -0.807424)
+mass = 0.3
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="RigidBody3D2"]
 transform = Transform3D(1.00001, -1.49012e-08, -3.44589e-06, 1.04308e-07, 1, -1.22935e-06, -4.09782e-08, 0, 1.00005, 0, 0.420952, -5.96046e-08)
 radius = 0.01
 height = 0.861507
+material = ExtResource("3_6pm8d")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.70552e-08, 0.420763, -7.45058e-08)
